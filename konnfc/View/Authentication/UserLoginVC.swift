@@ -11,7 +11,7 @@ import UIKit
 /**
  * View Controller for the login view
  **/
-class LoginVC: UIViewController {
+class UserLoginVC: UIViewController {
 
     //-------------------------------------------
     //  VIEW LIFECYCLE METHODS

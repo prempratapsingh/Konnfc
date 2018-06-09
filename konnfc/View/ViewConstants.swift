@@ -20,14 +20,18 @@ class ViewConstants {
     //  STORYBOARDS
     //-------------------------------------------
     
-    static let main = "Main"
+    static let main     = "Main"
     
     
     //-------------------------------------------
     //  VIEW CONTROLLERS
     //-------------------------------------------
     
-    static let login = "LoginVC"
+    static let userLogin    = "LoginVC"
+    static let userSignup   = "UserSignupVC"
+    static let home         = "HomeVC"
+    static let userProfile  = "UserProfileVC"
+    static let addNote      = "AddNoteVC"
     
     
     //-------------------------------------------
