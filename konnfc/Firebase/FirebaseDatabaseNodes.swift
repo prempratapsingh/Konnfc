@@ -8,7 +8,13 @@
 
 import Foundation
 
+/**
+ * Defines names/keys for Firebase database nodes
+ **/
+
 class FirebaseDatabaseNodes: NSObject {
+    
+    // Firebase Database node names
     static let userLogin = "userLogin"
     static let userName = "userName"
     static let lastLoginTime = "lastLoginTime"

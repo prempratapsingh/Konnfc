@@ -9,13 +9,14 @@
 import UIKit
 
 /**
- * This is main application level (main) coordinator of the application. It instantiates the
+ * This is application level (main) coordinator of the application. It instantiates the
  * view specific coordinators like LoginCoordintor, HomeCoordinator, etc and starts their
  * lifecycle.
  *
  * It also act as the delegate of view specific coordinators and provides API to switch application
  * views from one to another
  **/
+
 class AppCoordinator: BaseCoordinator {
     
     //-------------------------------------------
@@ -41,15 +42,20 @@ class AppCoordinator: BaseCoordinator {
         loginCoordinator.start()
     }
     
-    private func showHomeView() {
-        
+    private func showSignupView() {
+        let signupCoordinator = UserSignupCoordinator(withWindow: super.window)
+        signupCoordinator.delegate = self
+        signupCoordinator.start()
     }
     
-    private func showSignupView() {
+    private func showHomeView() {
         
     }
 }
 
+/**
+ * Implmenting delegate methods for UserLoginCoordinatorDelegate
+ **/
 extension AppCoordinator: UserLoginCoordinatorDelegate {
     func didCompleteUserLogin() {
         showHomeView()
@@ -60,6 +66,9 @@ extension AppCoordinator: UserLoginCoordinatorDelegate {
     }
 }
 
+/**
+ * Implmenting delegate methods for UserSignupCoordinatorDelegate
+ **/
 extension AppCoordinator: UserSignupCoordinatorDelegate {
     func didCompleteUseSignup() {
         

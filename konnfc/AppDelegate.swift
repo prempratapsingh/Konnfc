@@ -11,16 +11,43 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    //-------------------------------------------
+    //  PUBLIC PROPERTIES
+    //-------------------------------------------
     var window: UIWindow?
     var appCoordinator: AppCoordinator!
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    
+    //-------------------------------------------
+    //  PRIVATE METHODS
+    //-------------------------------------------
+    
+    /**
+     * Configures Firebase backend
+     */
+    private func setupFirebase() {
         
-        // Initializing app coordinator
+    }
+    
+    /**
+     * Initializes the application coordinator which takes care of the initialization, setup and presentation of
+     * rest of the application views.
+     */
+    private func setupAppCoordinator() {
         window = UIWindow()
         appCoordinator = AppCoordinator(withWindow: window!)
         appCoordinator.start()
         window?.makeKeyAndVisible()
+    }
+    
+    //-------------------------------------------
+    //  APPLICATION LIFECYCLE METHODS
+    //-------------------------------------------
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        // Initializing application global modules
+        setupFirebase()
+        setupAppCoordinator()
         
         return true
     }

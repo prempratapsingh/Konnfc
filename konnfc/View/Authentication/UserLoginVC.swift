@@ -14,7 +14,8 @@ import RxCocoa
 /**
  * View Controller for the login view
  **/
-class UserLoginVC: UIViewController {
+
+class UserLoginVC: BaseViewController {
 
     //-------------------------------------------
     //  RXSWIFT CONFIGURATION
@@ -39,7 +40,6 @@ class UserLoginVC: UIViewController {
     //-------------------------------------------
     //  VIEW LIFECYCLE METHODS
     //-------------------------------------------
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel?.viewDelegate = self
@@ -52,7 +52,6 @@ class UserLoginVC: UIViewController {
     //-------------------------------------------
     // PRIVATE METHODS
     //-------------------------------------------
-    
     func setupView() {
         emailTextField.delegate = self
         emailTextField.returnKeyType = .done
@@ -85,6 +84,9 @@ class UserLoginVC: UIViewController {
         }).subscribe().disposed(by: bag)
     }
     
+    //-------------------------------------------
+    // OUTLET METHODS
+    //-------------------------------------------
     @IBAction func didClickOnLoginButton(_ sender: Any) {
         SVProgressHUD.show()
         viewModel?.loginUser()
@@ -95,18 +97,25 @@ class UserLoginVC: UIViewController {
     }
 }
 
+/**
+ * Implementing methods for view model delegate. View model calls this method for view specific functions.
+ **/
 extension UserLoginVC: UserLoginViewModelViewDelegate {
+    
+    // Called by the view model when user login is successful. It shows the login success message and than
+    // initiates the call to show home view via view model.
     func didCompleteUserLogin() {
         SVProgressHUD.dismiss()
         
         let alert = UIAlertController(title: "User Login", message: "Your login is successful!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default) { [weak self] action in
             alert.dismiss(animated: true, completion: nil)
-            self?.viewModel?.showUserListView()
+            self?.viewModel?.showHomeView()
         })
         present(alert, animated: true)
     }
     
+    // Called by the view model when user login is failed. It shows the login error message.
     func didUserLoginFail() {
         SVProgressHUD.dismiss()
         
@@ -118,6 +127,9 @@ extension UserLoginVC: UserLoginViewModelViewDelegate {
     }
 }
 
+/**
+ * Implementing methods for text field delegate. Controls the text filled operations.
+ **/
 extension UserLoginVC: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

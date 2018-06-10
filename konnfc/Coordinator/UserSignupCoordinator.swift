@@ -22,9 +22,10 @@ class UserSignupCoordinator: BaseCoordinator {
     
     override func start() {
         let mainSB = UIStoryboard(name: ViewConstants.main, bundle: nil)
-        let signupVC = mainSB.instantiateViewController(withIdentifier: "UserSignupVC") as! UserSignupVC
+        let signupVC = mainSB.instantiateViewController(withIdentifier: ViewConstants.userSignup) as! UserSignupVC
         let signupViewModel = UserSignupViewModel()
         signupViewModel.coordinatorDelegate = self
+        signupViewModel.viewDelegate = signupVC
         signupViewModel.model = UserModel.sharedInstance
         signupVC.viewModel = signupViewModel
         
@@ -32,6 +33,9 @@ class UserSignupCoordinator: BaseCoordinator {
     }
 }
 
+/**
+ * Implmenting delegate methods for UserSignupViewModelCoordinatorDelegate
+ **/
 extension UserSignupCoordinator: UserSignupViewModelCoordinatorDelegate {
     func showUserLoginView() {
         if let coordinatorDelegate = delegate as? UserSignupCoordinatorDelegate {

@@ -7,10 +7,40 @@
 //
 
 import UIKit
+import RxSwift
 
-class HomeVC: UIViewController {
+/**
+ * View Controller for the home view
+ **/
 
+class HomeVC: BaseViewController {
+
+    //-------------------------------------------
+    //  RXSWIFT CONFIGURATION
+    //-------------------------------------------
+    let bag = DisposeBag()
+    
+    
+    //-------------------------------------------
+    //  PUBLIC PROPERTIES
+    //-------------------------------------------
+    
+    
+    //-------------------------------------------
+    //  VIEW OUTLETS
+    //-------------------------------------------
+    
+    
+    //-------------------------------------------
+    //  VIEW LIFECYCLE METHODS
+    //-------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    
+    //-------------------------------------------
+    // PRIVATE METHODS
+    //-------------------------------------------
+    
 }

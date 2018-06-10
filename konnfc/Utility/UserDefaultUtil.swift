@@ -8,6 +8,12 @@
 
 import Foundation
 
+/**
+ * Defines keys for UserDefault data persistence
+ **/
+
 class UserDefaultKeys: NSObject {
+    
+    // Key for reading/writing user login/logout state
     static let isUserLoggedIn = "com.xparrow.rxChat.isUserLoggedIn"
 }

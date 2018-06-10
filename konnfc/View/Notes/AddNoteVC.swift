@@ -7,10 +7,40 @@
 //
 
 import UIKit
+import RxSwift
 
-class AddNoteVC: UIViewController {
+/**
+ * View Controller for the add notes view
+ **/
 
+class AddNoteVC: BaseViewController {
+
+    //-------------------------------------------
+    //  RXSWIFT CONFIGURATION
+    //-------------------------------------------
+    let bag = DisposeBag()
+    
+    
+    //-------------------------------------------
+    //  PUBLIC PROPERTIES
+    //-------------------------------------------
+    
+    
+    //-------------------------------------------
+    //  VIEW OUTLETS
+    //-------------------------------------------
+    
+    
+    //-------------------------------------------
+    //  VIEW LIFECYCLE METHODS
+    //-------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    
+    //-------------------------------------------
+    // PRIVATE METHODS
+    //-------------------------------------------
+    
 }

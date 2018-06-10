@@ -11,24 +11,47 @@ import SVProgressHUD
 import RxSwift
 import RxCocoa
 
-class UserSignupVC: UIViewController {
+/**
+ * View Controller for the user signup view
+ **/
 
+class UserSignupVC: BaseViewController {
+
+    //-------------------------------------------
+    //  RXSWIFT CONFIGURATION
+    //-------------------------------------------
     let bag = DisposeBag()
+    
+    
+    //-------------------------------------------
+    //  PUBLIC PROPERTIES
+    //-------------------------------------------
     var viewModel: UserSignupViewModel?
     
+    
+    //-------------------------------------------
+    //  VIEW OUTLETS
+    //-------------------------------------------
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signupButton: UIButton!
     
+    
+    //-------------------------------------------
+    //  VIEW LIFECYCLE METHODS
+    //-------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel?.viewDelegate = self
         
         setupView()
         bindView()
     }
     
+    
+    //-------------------------------------------
+    // PRIVATE METHODS
+    //-------------------------------------------
     func setupView() {
         nameTextField.delegate = self
         nameTextField.returnKeyType = .done
@@ -64,6 +87,9 @@ class UserSignupVC: UIViewController {
         }).subscribe().disposed(by: bag)
     }
     
+    //-------------------------------------------
+    // OUTLET METHODS
+    //-------------------------------------------
     @IBAction func didClickOnSignupButton(_ sender: Any) {
         SVProgressHUD.show()
         viewModel?.signupUser()
@@ -74,7 +100,14 @@ class UserSignupVC: UIViewController {
     }
 }
 
+
+/**
+ * Implementing methods for view model delegate. View model calls this method for view specific functions.
+ **/
 extension UserSignupVC: UserSignupViewModelViewDelegate {
+    
+    // Called by the view model when user signup is successful. It shows the signup success message and than
+    // initiates the call to show login view via view model.
     func didCompleteUserSignup() {
         SVProgressHUD.dismiss()
         
@@ -86,6 +119,7 @@ extension UserSignupVC: UserSignupViewModelViewDelegate {
         present(alert, animated: true)
     }
     
+    // Called by the view model when user signup is failed. It shows the signup error message.
     func didUserSignupFail() {
         SVProgressHUD.dismiss()
         
@@ -97,6 +131,9 @@ extension UserSignupVC: UserSignupViewModelViewDelegate {
     }
 }
 
+/**
+ * Implementing methods for text field delegate. Controls the text filled operations.
+ **/
 extension UserSignupVC: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

@@ -7,10 +7,40 @@
 //
 
 import UIKit
+import RxSwift
 
-class UserProfileVC: UIViewController {
+/**
+ * View Controller for the user profile view
+ **/
 
+class UserProfileVC: BaseViewController {
+
+    //-------------------------------------------
+    //  RXSWIFT CONFIGURATION
+    //-------------------------------------------
+    let bag = DisposeBag()
+    
+    
+    //-------------------------------------------
+    //  PUBLIC PROPERTIES
+    //-------------------------------------------
+    
+    
+    //-------------------------------------------
+    //  VIEW OUTLETS
+    //-------------------------------------------
+    
+    
+    //-------------------------------------------
+    //  VIEW LIFECYCLE METHODS
+    //-------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    
+    //-------------------------------------------
+    // PRIVATE METHODS
+    //-------------------------------------------
+    
 }

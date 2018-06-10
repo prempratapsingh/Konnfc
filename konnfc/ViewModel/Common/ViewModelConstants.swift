@@ -7,3 +7,11 @@
 //
 
 import Foundation
+
+/**
+ * Defines constants for view models
+ **/
+
+class ViewModelConstants {
+    
+}

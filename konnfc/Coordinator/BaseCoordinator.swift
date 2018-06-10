@@ -12,6 +12,7 @@ import UIKit
  Base class for Coordinators. It provides access to the common window and delegate properety and also
  implements Coordinator protocol methods
  **/
+
 class BaseCoordinator: NSObject, Coordinator {
     
     //-------------------------------------------
@@ -20,10 +21,10 @@ class BaseCoordinator: NSObject, Coordinator {
     private var _window: UIWindow!
     private weak var _delegate: Coordinator!
     
+    
     //-------------------------------------------
     //  PUBLIC PROPERTIES
     //-------------------------------------------
-    
     var window: UIWindow {
         set {
             self._window = newValue
@@ -44,7 +45,6 @@ class BaseCoordinator: NSObject, Coordinator {
     //-------------------------------------------
     //  CONSTRUCTOR
     //-------------------------------------------
-    
     init(withWindow: UIWindow) {
         super.init()
         self.window = withWindow
@@ -54,7 +54,6 @@ class BaseCoordinator: NSObject, Coordinator {
     //-------------------------------------------
     //  PUBLIC METHODS
     //-------------------------------------------
-    
     func start() {
         // To be overriden by the subclasses
     }

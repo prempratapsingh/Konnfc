@@ -8,32 +8,23 @@
 
 import Foundation
 
-protocol UserLoginViewModelViewDelegate: class {
+/**
+ * Common Type for viewmodel's view delegate. It is used to generlize the view delegate definition.
+ **/
+protocol ViewDelegate: class {}
+
+/**
+ * View delegate for the login view model. It is used to delegate calls from viewmodel to view.
+ **/
+protocol UserLoginViewModelViewDelegate: class, ViewDelegate {
     func didCompleteUserLogin()
     func didUserLoginFail()
 }
 
-protocol UserLoginViewModelCoordinatorDelegate: class {
-    func didCompleteUserLogin()
-    func showUserSignupView()
-}
-
-protocol UserSignupViewModelViewDelegate: class {
+/**
+ * View delegate for the signup view model. It is used to delegate calls from viewmodel to view.
+ **/
+protocol UserSignupViewModelViewDelegate: class, ViewDelegate {
     func didCompleteUserSignup()
     func didUserSignupFail()
-}
-
-protocol UserSignupViewModelCoordinatorDelegate: class {
-    func showUserLoginView()
-}
-
-protocol UserListViewModelViewDelegate: class {
-    func didUserListLoaded()
-    func didUserListLoadFailed()
-    func didLogoutSuccessfully()
-    func didLogutFailed()
-}
-
-protocol UserListViewModelCoordinatorDelegate: class {
-    func showUserLoginView()
 }

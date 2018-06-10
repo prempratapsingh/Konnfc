@@ -8,41 +8,57 @@
 
 import Foundation
 
+/**
+ * Model layer for the login veiw model.
+ * It interacts with the user services for backend operations and data retrieval. It also
+ * delegates responses from the services back to the view model.
+ **/
 class UserModel: NSObject {
     
+    //-------------------------------------------
+    //  PUBLIC PROPERTIES
+    //-------------------------------------------
     static var sharedInstance = UserModel()
+    var user: User?
     
+    
+    //-------------------------------------------
+    //  CONSTRUCTOR
+    //-------------------------------------------
     override private init() {
         // Initializng UserModel
     }
     
-    var user: User? {
-        get {
-            return UserService.sharedInstance.user
-        }
-    }
     
+    //-------------------------------------------
+    //  PUBLIC METHOD
+    //-------------------------------------------
+    
+    /**
+     * Calls user service for logging in user with given email and password
+     **/
     func loginUserWith(email: String, password: String, completionHandler: @escaping (_:Bool) -> Void) {
-        UserService.sharedInstance.loginUserWith(email: email, password: password) { didLogin, user in
+        UserService.sharedInstance.loginUserWith(email: email, password: password) { [weak self] didLogin, user in
+            self?.user = user
             completionHandler(didLogin)
         }
     }
     
+    /**
+     * Calls user service for signing up user with given details like name and email
+     **/
     func signupUserWith(name: String, email: String, password: String, completionHandler: @escaping (_:Bool) -> Void) {
         UserService.sharedInstance.signupUserWith(name: name, email: email, password: password) { didSignup in
             completionHandler(didSignup)
         }
     }
     
+    /**
+     * Calls user service for logging out user
+     **/
     func logoutUser(completionHandler: @escaping (_:Bool) -> Void) {
         UserService.sharedInstance.logoutUser { isLoggedOut in
             completionHandler(isLoggedOut)
-        }
-    }
-    
-    func getLoggedinUserList(completionHandler: @escaping ([User]) -> Void) {
-        UserService.sharedInstance.getLoggedinUserList { users in
-            completionHandler(users)
         }
     }
 }

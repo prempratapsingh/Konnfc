@@ -16,21 +16,18 @@ class ApplicationModel: NSObject {
     //-------------------------------------------
     //  STATIC PROPERTIES
     //-------------------------------------------
-    
     static var sharedInstance = ApplicationModel()
     
     
     //-------------------------------------------
     //  PUBLIC PROPERTIES
     //-------------------------------------------
-    
     var isUserSignedin = false
     
     
     //-------------------------------------------
     //  CONSTRUCTOR
     //-------------------------------------------
-    
     override private init() {
         // Initializes the AppModel
     }

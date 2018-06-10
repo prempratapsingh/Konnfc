@@ -11,18 +11,43 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
+/**
+ * Service class for user related operations like - user signup, user login, user signup, user profile load, etc
+ * It communicates with the Firebase backend to perform user realted operations.
+ **/
 class UserService: NSObject {
     
+    //-------------------------------------------
+    //  PUBLIC PROPERTIES
+    //-------------------------------------------
     static let sharedInstance = UserService()
     
-    var userDatabase: DatabaseReference?
-    var user: User?
     
+    //-------------------------------------------
+    //  PRIVATE PROPERTIES
+    //-------------------------------------------
+    private var userDatabase: DatabaseReference?
+    private var user: User?
+    
+    
+    //-------------------------------------------
+    //  CONSTRUCTOR
+    //-------------------------------------------
     private override init() {
         // UserService Initialized
         userDatabase = DatabaseReference.init()
     }
     
+    
+    //-------------------------------------------
+    //  PUBLIC METHODS
+    //-------------------------------------------
+    
+    /**
+     * Makes call to the Firebase for loggin in user with email and password.
+     * On getting back reponse from Firebase, it delegates call back to the view model
+     * via the closure function.
+     **/
     func loginUserWith(email: String, password: String, completionHandler: @escaping ( _: Bool, _: User? ) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
             if error == nil && user != nil {
@@ -52,6 +77,11 @@ class UserService: NSObject {
         }
     }
     
+    /**
+     * Makes call to the Firebase for user signup with name and email.
+     * On getting back reponse from Firebase, it delegates call back to the view model
+     * via the closure function.
+     **/
     func signupUserWith(name: String, email: String, password: String, completionHandler: @escaping (_:Bool) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { user, error in
             if error == nil && user != nil {
@@ -74,6 +104,11 @@ class UserService: NSObject {
         }
     }
     
+    /**
+     * Makes call to the Firebase for logging out the user from current login session.
+     * On getting back reponse from Firebase, it delegates call back to the view model
+     * via the closure function.
+     **/
     func logoutUser(completionHandler: @escaping (_:Bool) -> Void) {
         if Auth.auth().currentUser != nil {
             do {
@@ -93,30 +128,5 @@ class UserService: NSObject {
                 completionHandler(false)
             }
         }
-    }
-    
-    func getLoggedinUserList(completionHandler: @escaping ([User]) -> Void) {
-        //Firebase Database has got some unstability issues
-//        self.userDatabase?.child(FirebaseDatabaseNodes.userLogin)
-//            .queryOrdered(byChild: FirebaseDatabaseNodes.lastLoginTime).observe(.value) { snapshot in
-//            var loggedUsers = [User]()
-//            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-//                for snap in snapshots {
-//                    if let postData = snap.value as? [String:Any] {
-//                        let user = User()
-//                        user.name = postData[FirebaseDatabaseNodes.userName] as? String
-//                        loggedUsers.append(user)
-//                    }
-//                }
-//            }
-//            completionHandler(loggedUsers)
-//        }
-        
-        // Passing in test user list
-        var loggedUsers = [User]()
-        loggedUsers.append(User(name: "John", email: "john@yahoo.com"))
-        loggedUsers.append(User(name: "Michelle", email: "michelle@gmail.com"))
-        loggedUsers.append(User(name: "Adam", email: "adam@msn.com"))
-        completionHandler(loggedUsers)
     }
 }

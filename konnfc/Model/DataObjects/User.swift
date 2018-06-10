@@ -8,12 +8,24 @@
 
 import Foundation
 
+/**
+ * Data object for users.
+ * It defines properties and methods for user data related operations.
+ **/
+
 class User: NSObject {
     
+    //-------------------------------------------
+    //  PUBLIC PROPERTIES
+    //-------------------------------------------
     var id: String!
     var name: String!
     var email: String!
     
+    
+    //-------------------------------------------
+    //  CONSTRUCTOR
+    //-------------------------------------------
     init(name: String, email: String) {
         self.name = name
         self.email = email

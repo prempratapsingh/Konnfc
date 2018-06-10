@@ -22,11 +22,20 @@ class UserLoginCoordinator: BaseCoordinator {
     
     override func start() {
         let mainSB = UIStoryboard(name: ViewConstants.main, bundle: nil)
-        let loginVC = mainSB.instantiateViewController(withIdentifier: ViewConstants.userLogin)
-        window.rootViewController = loginVC
+        let loginVC = mainSB.instantiateViewController(withIdentifier: ViewConstants.userLogin) as! UserLoginVC
+        let loginViewModel = UserLoginViewModel()
+        loginViewModel.coordinatorDelegate = self
+        loginViewModel.viewDelegate = loginVC
+        loginViewModel.model = UserModel.sharedInstance
+        loginVC.viewModel = loginViewModel
+        
+        self.window.rootViewController = loginVC
     }
 }
 
+/**
+ * Implmenting delegate methods for UserLoginViewModelCoordinatorDelegate
+ **/
 extension UserLoginCoordinator: UserLoginViewModelCoordinatorDelegate {
     func didCompleteUserLogin() {
         if let coordinatorDelegate = delegate as? UserLoginCoordinatorDelegate {

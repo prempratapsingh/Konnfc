@@ -17,7 +17,6 @@ protocol Coordinator: class {
     //-------------------------------------------
     //  PUBLIC PROPERTIES
     //-------------------------------------------
-    
     var window: UIWindow {get set}
     var delegate: Coordinator {get set}
     
@@ -25,6 +24,5 @@ protocol Coordinator: class {
     //-------------------------------------------
     //  PUBLIC METHODS
     //-------------------------------------------
-    
     func start()
 }
