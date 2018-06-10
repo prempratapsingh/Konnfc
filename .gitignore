@@ -2,3 +2,4 @@
 konnfc.xcodeproj/
 konnfc.xcworkspace/
 Pods/
+konnfc/GoogleService-Info.plist
