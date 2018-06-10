@@ -12,6 +12,7 @@ target 'konnfc' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SVProgressHUD'
+  pod 'Localize-Swift', '~> 2.0'
 
   target 'konnfcTests' do
     inherit! :search_paths

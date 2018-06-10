@@ -32,10 +32,12 @@ class UserSignupVC: BaseViewController {
     //-------------------------------------------
     //  VIEW OUTLETS
     //-------------------------------------------
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     
     //-------------------------------------------
@@ -53,16 +55,27 @@ class UserSignupVC: BaseViewController {
     // PRIVATE METHODS
     //-------------------------------------------
     func setupView() {
+        
+        titleLabel.text = LocalizationKeys.USERSIGNUP_TITLE.localized()
+        
         nameTextField.delegate = self
         nameTextField.returnKeyType = .done
+        nameTextField.placeholder = LocalizationKeys.USERSIGNUP_NAME.localized()
+        
         emailTextField.delegate = self
         emailTextField.returnKeyType = .done
+        emailTextField.placeholder = LocalizationKeys.USERLOGIN_EMAIL.localized()
+        
         passwordTextField.delegate = self
         passwordTextField.returnKeyType = .done
+        passwordTextField.placeholder = LocalizationKeys.USERLOGIN_PASSWORD.localized()
         
+        signupButton.setTitle(LocalizationKeys.USERLOGIN_BUTTON_SIGNUP.localized(), for: .normal)
         signupButton.layer.cornerRadius = 15
         signupButton.isUserInteractionEnabled = false
         signupButton.alpha = 0.6
+        
+        backButton.setTitle(LocalizationKeys.BUTTON_BACK.localized(), for: .normal)
     }
     
     func bindView() {
@@ -111,11 +124,17 @@ extension UserSignupVC: UserSignupViewModelViewDelegate {
     func didCompleteUserSignup() {
         SVProgressHUD.dismiss()
         
-        let alert = UIAlertController(title: "User Signup", message: "Your app account is created. Please login with email and password!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default) { [weak self] action in
-            alert.dismiss(animated: true, completion: nil)
-            self?.viewModel?.showUserLoginView()
-        })
+        let alert = UIAlertController(
+            title: LocalizationKeys.USERSIGNUP_ALERT_TITLE.localized(),
+            message: LocalizationKeys.USERSIGNUP_SIGNUP_SUCCESS_MESSAGE.localized(),
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(title: LocalizationKeys.BUTTON_OK.localized(), style: .default) { [weak self] action in
+                alert.dismiss(animated: true, completion: nil)
+                self?.viewModel?.showUserLoginView()
+            }
+        )
         present(alert, animated: true)
     }
     
@@ -123,8 +142,12 @@ extension UserSignupVC: UserSignupViewModelViewDelegate {
     func didUserSignupFail() {
         SVProgressHUD.dismiss()
         
-        let alert = UIAlertController(title: "User Signup", message: "Sorry, Your app account coundn't be created. Please try again!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default) { action in
+        let alert = UIAlertController(
+            title: LocalizationKeys.USERSIGNUP_ALERT_TITLE.localized(),
+            message: LocalizationKeys.USERSIGNUP_SIGNUP_ERROR_MESSAGE.localized(),
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: LocalizationKeys.BUTTON_OK.localized(), style: .default) { action in
             alert.dismiss(animated: true, completion: nil)
         })
         present(alert, animated: true)

@@ -10,6 +10,7 @@ import UIKit
 import SVProgressHUD
 import RxSwift
 import RxCocoa
+import Localize_Swift
 
 /**
  * View Controller for the login view
@@ -32,10 +33,11 @@ class UserLoginVC: BaseViewController {
     //-------------------------------------------
     //  VIEW OUTLETS
     //-------------------------------------------
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    
+    @IBOutlet weak var signupButton: UIButton!
     
     //-------------------------------------------
     //  VIEW LIFECYCLE METHODS
@@ -53,15 +55,24 @@ class UserLoginVC: BaseViewController {
     // PRIVATE METHODS
     //-------------------------------------------
     func setupView() {
+        
+        titleLabel.text = LocalizationKeys.USERLOGIN_TITLE.localized()
+        
+        emailTextField.placeholder = LocalizationKeys.USERLOGIN_EMAIL.localized()
         emailTextField.delegate = self
         emailTextField.returnKeyType = .done
+        
+        passwordTextField.placeholder = LocalizationKeys.USERLOGIN_PASSWORD.localized()
         passwordTextField.delegate = self
         passwordTextField.returnKeyType = .done
         passwordTextField.isSecureTextEntry = true
         
+        loginButton.setTitle(LocalizationKeys.USERLOGIN_BUTTON_LOGIN.localized(), for: .normal)
         loginButton.layer.cornerRadius = 15
         loginButton.isUserInteractionEnabled = false
         loginButton.alpha = 0.6
+        
+        signupButton.setTitle(LocalizationKeys.USERLOGIN_BUTTON_SIGNUP.localized(), for: .normal)
     }
     
     func bindView() {
@@ -107,11 +118,18 @@ extension UserLoginVC: UserLoginViewModelViewDelegate {
     func didCompleteUserLogin() {
         SVProgressHUD.dismiss()
         
-        let alert = UIAlertController(title: "User Login", message: "Your login is successful!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default) { [weak self] action in
-            alert.dismiss(animated: true, completion: nil)
-            self?.viewModel?.showHomeView()
-        })
+        let alert = UIAlertController(
+            title: LocalizationKeys.USERLOGIN_ALERT_TITLE.localized(),
+            message: LocalizationKeys.USERLOGIN_LOGIN_SUCCESS_MESSAGE.localized(),
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(
+            UIAlertAction(title: LocalizationKeys.BUTTON_OK.localized(), style: .default) { [weak self] action in
+                alert.dismiss(animated: true, completion: nil)
+                self?.viewModel?.showHomeView()
+            }
+        )
         present(alert, animated: true)
     }
     
@@ -119,10 +137,16 @@ extension UserLoginVC: UserLoginViewModelViewDelegate {
     func didUserLoginFail() {
         SVProgressHUD.dismiss()
         
-        let alert = UIAlertController(title: "User Login", message: "Your login failed, please try again!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default) { action in
-            alert.dismiss(animated: true, completion: nil)
-        })
+        let alert = UIAlertController(
+            title: LocalizationKeys.USERLOGIN_ALERT_TITLE.localized(),
+            message: LocalizationKeys.USERLOGIN_LOGIN_ERROR_MESSAGE.localized(),
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(title: LocalizationKeys.BUTTON_OK.localized(), style: .default) { action in
+                alert.dismiss(animated: true, completion: nil)
+            }
+        )
         present(alert, animated: true)
     }
 }

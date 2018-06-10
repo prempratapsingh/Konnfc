@@ -97,6 +97,8 @@
                         <outlet property="emailTextField" destination="V5y-Dj-hjV" id="gMc-tc-sIL"/>
                         <outlet property="loginButton" destination="N1o-Nq-ZhN" id="2Lu-Pv-X9B"/>
                         <outlet property="passwordTextField" destination="0So-NE-X9x" id="tZf-dH-ecF"/>
+                        <outlet property="signupButton" destination="Eqd-N4-KLQ" id="icE-nV-fER"/>
+                        <outlet property="titleLabel" destination="HOS-MV-FOb" id="JEe-g9-Xcl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -199,10 +201,12 @@
                         <viewLayoutGuide key="safeArea" id="SJM-4i-5ih"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="jiA-OD-1v9" id="DZx-7L-sR4"/>
                         <outlet property="emailTextField" destination="wsL-fh-lkt" id="zeq-nT-0JI"/>
                         <outlet property="nameTextField" destination="myG-If-vuP" id="9Hq-E5-RAI"/>
                         <outlet property="passwordTextField" destination="qG8-we-dHG" id="GMB-7r-8Gw"/>
                         <outlet property="signupButton" destination="Mav-kM-MiZ" id="dev-1V-CPV"/>
+                        <outlet property="titleLabel" destination="QbH-x2-UOr" id="xPs-2I-Kns"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5mc-qG-AAa" userLabel="First Responder" sceneMemberID="firstResponder"/>

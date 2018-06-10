@@ -1,0 +1,37 @@
+/*
+ Localizable.strings
+ konnfc
+ 
+ Created by Prem Pratap Singh on 09/06/18.
+ Copyright © 2018 Prem Pratap Singh. All rights reserved.
+ */
+
+// MARK: - Common
+// Buttons
+"BUTTON_OK" = "OK";
+"BUTTON_BACK" = "Back";
+
+// MARK: - UserLoginVC
+"USERLOGIN_TITLE" = "LOGIN";
+"USERLOGIN_EMAIL" = "Email";
+"USERLOGIN_PASSWORD" = "Password";
+"USERLOGIN_BUTTON_LOGIN" = "Login";
+"USERLOGIN_BUTTON_SIGNUP" = "Signup";
+"USERLOGIN_ALERT_TITLE" = "User Login";
+"USERLOGIN_LOGIN_SUCCESS_MESSAGE" = "Your login is successful!";
+"USERLOGIN_LOGIN_ERROR_MESSAGE" = "Your login failed, please try again!";
+
+// MARK: - UserSignupVC
+"USERSIGNUP_TITLE" = "SIGNUP";
+"USERSIGNUP_NAME" = "Name";
+"USERSIGNUP_ALERT_TITLE" = "User Signup";
+"USERSIGNUP_SIGNUP_SUCCESS_MESSAGE" = "Your account is created. Please login with your email and password!";
+"USERSIGNUP_SIGNUP_ERROR_MESSAGE" = "Sorry, Your account coundn't be created. Please try again!";
+
+// MARK: - UserProfileVC
+"USERPROFILE_TITLE" = "USER PROFILE";
+
+
+// MARK: - AddNoteVC
+"ADDNOTE_TITLE" = "ADD NOTE";
+
