@@ -12,7 +12,7 @@ import UIKit
  * Protocol for the Coordinators. It defines the common propertis and methods to be defined
  * by the coordinators
  **/
-protocol Coordinator {
+protocol Coordinator: class {
     
     //-------------------------------------------
     //  PUBLIC PROPERTIES

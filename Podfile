@@ -8,6 +8,10 @@ target 'konnfc' do
   # Pods for konnfc
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'SVProgressHUD'
 
   target 'konnfcTests' do
     inherit! :search_paths

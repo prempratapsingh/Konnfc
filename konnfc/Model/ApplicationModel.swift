@@ -11,13 +11,13 @@ import Foundation
 /**
  * Global model for Konnfc application
  **/
-class AppModel: NSObject {
+class ApplicationModel: NSObject {
     
     //-------------------------------------------
     //  STATIC PROPERTIES
     //-------------------------------------------
     
-    static var sharedInstance = AppModel()
+    static var sharedInstance = ApplicationModel()
     
     
     //-------------------------------------------

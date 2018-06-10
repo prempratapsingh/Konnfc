@@ -27,7 +27,7 @@ class ViewConstants {
     //  VIEW CONTROLLERS
     //-------------------------------------------
     
-    static let userLogin    = "LoginVC"
+    static let userLogin    = "UserLoginVC"
     static let userSignup   = "UserSignupVC"
     static let home         = "HomeVC"
     static let userProfile  = "UserProfileVC"

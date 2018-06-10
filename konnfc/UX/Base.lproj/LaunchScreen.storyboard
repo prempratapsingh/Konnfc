@@ -18,23 +18,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TrL-Ps-DlI">
-                                <rect key="frame" x="120" y="308.5" width="135" height="50"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="konNFC">
-                                        <attributes>
-                                            <font key="NSFont" size="36" name="Avenir-Medium"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nfc-icon" translatesAutoresizingMaskIntoConstraints="NO" id="a3Q-oW-aWP">
+                                <rect key="frame" x="137" y="223.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="9Sl-fy-H47"/>
+                                    <constraint firstAttribute="width" constant="100" id="CjO-US-1Xk"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="konNFC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TrL-Ps-DlI">
+                                <rect key="frame" x="120" y="333.5" width="135" height="50"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="36"/>
+                                <color key="textColor" red="0.0" green="0.26579067109999999" blue="0.47340971230000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117649999999" green="0.97254901959999995" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="TrL-Ps-DlI" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="GIV-nd-3Uc"/>
-                            <constraint firstItem="TrL-Ps-DlI" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="kh3-Td-qw3"/>
+                            <constraint firstItem="TrL-Ps-DlI" firstAttribute="top" secondItem="a3Q-oW-aWP" secondAttribute="bottom" constant="10" id="Ik8-cD-1sI"/>
+                            <constraint firstItem="a3Q-oW-aWP" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-60" id="pxL-4s-3u6"/>
+                            <constraint firstItem="a3Q-oW-aWP" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="x9Q-3B-5DN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -44,4 +47,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="nfc-icon" width="252" height="248"/>
+    </resources>
 </document>

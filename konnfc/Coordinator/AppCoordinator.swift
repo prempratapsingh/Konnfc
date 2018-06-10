@@ -23,7 +23,7 @@ class AppCoordinator: BaseCoordinator {
     //-------------------------------------------
     
     override func start() {
-        if AppModel.sharedInstance.isUserSignedin {
+        if ApplicationModel.sharedInstance.isUserSignedin {
             showHomeView()
         } else {
             showLoginView()
@@ -35,14 +35,37 @@ class AppCoordinator: BaseCoordinator {
     //  PRIVATE METHODS
     //-------------------------------------------
     
-    private func showHomeView() {
-        
-    }
-    
     private func showLoginView() {
-        let loginCoordinator = LoginCoordinator(withWindow: super.window)
+        let loginCoordinator = UserLoginCoordinator(withWindow: super.window)
         loginCoordinator.delegate = self
         loginCoordinator.start()
     }
     
+    private func showHomeView() {
+        
+    }
+    
+    private func showSignupView() {
+        
+    }
+}
+
+extension AppCoordinator: UserLoginCoordinatorDelegate {
+    func didCompleteUserLogin() {
+        showHomeView()
+    }
+    
+    func showUserSignupView() {
+        showSignupView()
+    }
+}
+
+extension AppCoordinator: UserSignupCoordinatorDelegate {
+    func didCompleteUseSignup() {
+        
+    }
+    
+    func showUserLoginView() {
+        showLoginView()
+    }
 }

@@ -18,7 +18,7 @@ class BaseCoordinator: NSObject, Coordinator {
     //  PRIVATE PROPERTIES
     //-------------------------------------------
     private var _window: UIWindow!
-    private var _delegate: Coordinator!
+    private weak var _delegate: Coordinator!
     
     //-------------------------------------------
     //  PUBLIC PROPERTIES
