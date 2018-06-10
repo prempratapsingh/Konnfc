@@ -58,17 +58,18 @@ class UserSignupVC: BaseViewController {
         
         titleLabel.text = LocalizationKeys.USERSIGNUP_TITLE.localized()
         
+        nameTextField.placeholder = LocalizationKeys.USERSIGNUP_NAME.localized()
         nameTextField.delegate = self
         nameTextField.returnKeyType = .done
-        nameTextField.placeholder = LocalizationKeys.USERSIGNUP_NAME.localized()
         
+        emailTextField.placeholder = LocalizationKeys.USERLOGIN_EMAIL.localized()
         emailTextField.delegate = self
         emailTextField.returnKeyType = .done
-        emailTextField.placeholder = LocalizationKeys.USERLOGIN_EMAIL.localized()
         
+        passwordTextField.placeholder = LocalizationKeys.USERLOGIN_PASSWORD.localized()
         passwordTextField.delegate = self
         passwordTextField.returnKeyType = .done
-        passwordTextField.placeholder = LocalizationKeys.USERLOGIN_PASSWORD.localized()
+        passwordTextField.isSecureTextEntry = true
         
         signupButton.setTitle(LocalizationKeys.USERLOGIN_BUTTON_SIGNUP.localized(), for: .normal)
         signupButton.layer.cornerRadius = 15
