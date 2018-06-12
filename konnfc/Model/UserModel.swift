@@ -37,19 +37,19 @@ class UserModel: NSObject {
     /**
      * Calls user service for logging in user with given email and password
      **/
-    func loginUserWith(email: String, password: String, completionHandler: @escaping (_:Bool) -> Void) {
-        UserService.sharedInstance.loginUserWith(email: email, password: password) { [weak self] didLogin, user in
-            self?.user = user
-            completionHandler(didLogin)
+    func loginUserWith(email: String, password: String, completionHandler: @escaping (_:ApiResponse) -> Void) {
+        UserService.sharedInstance.loginUserWith(email: email, password: password) { [weak self] response in
+            self?.user = response.result as? User
+            completionHandler(response)
         }
     }
     
     /**
      * Calls user service for signing up user with given details like name and email
      **/
-    func signupUserWith(name: String, email: String, password: String, completionHandler: @escaping (_:Bool) -> Void) {
-        UserService.sharedInstance.signupUserWith(name: name, email: email, password: password) { didSignup in
-            completionHandler(didSignup)
+    func signupUserWith(name: String, email: String, password: String, completionHandler: @escaping (_:ApiResponse) -> Void) {
+        UserService.sharedInstance.signupUserWith(name: name, email: email, password: password) { response in
+            completionHandler(response)
         }
     }
     

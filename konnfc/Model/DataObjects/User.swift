@@ -21,7 +21,18 @@ class User: NSObject {
     var id: String!
     var name: String!
     var email: String!
-    
+    var emailVarified: Bool?
+    var gender: String?
+    var dob: String?
+    var phone: String?
+    var work: String?
+    var connectedCelebs: String?
+    var connecredGroups: String?
+    var helpOthersCareer: String?
+    var helpOthersLife: String?
+    var helpOwnCareer: String?
+    var helpOwnLife: String?
+    var outsideOfWork: String?
     
     //-------------------------------------------
     //  CONSTRUCTOR

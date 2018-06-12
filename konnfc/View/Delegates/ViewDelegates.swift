@@ -18,7 +18,7 @@ protocol ViewDelegate: class {}
  **/
 protocol UserLoginViewModelViewDelegate: class, ViewDelegate {
     func didCompleteUserLogin()
-    func didUserLoginFail()
+    func didUserLoginFail(message: String)
 }
 
 /**
@@ -26,5 +26,5 @@ protocol UserLoginViewModelViewDelegate: class, ViewDelegate {
  **/
 protocol UserSignupViewModelViewDelegate: class, ViewDelegate {
     func didCompleteUserSignup()
-    func didUserSignupFail()
+    func didUserSignupFail(message: String)
 }

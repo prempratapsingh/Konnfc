@@ -43,11 +43,11 @@ class UserLoginViewModel: BaseViewModel {
      * for handling login success/error.
      **/
     func loginUser() {
-        model?.loginUserWith(email: userEmail!, password: userPassword!) { [weak self] didLogin in
-            if didLogin == true {
-                self?.view.didCompleteUserLogin()
+        model?.loginUserWith(email: userEmail!, password: userPassword!) { [weak self] response in
+            if let error = response.error {
+                self?.view.didUserLoginFail(message: error.localizedDescription)
             } else {
-                self?.view.didUserLoginFail()
+                self?.view.didCompleteUserLogin()
             }
         }
     }

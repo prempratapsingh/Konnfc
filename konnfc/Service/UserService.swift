@@ -1,8 +1,8 @@
 //
 //  UserService.swift
-//  RxChat
+//  ConNfc
 //
-//  Created by Prem Pratap Singh on 25/05/18.
+//  Created by Prem Pratap Singh on 09/06/18.
 //  Copyright © 2018 Prem Pratap Singh. All rights reserved.
 //
 
@@ -48,31 +48,25 @@ class UserService: NSObject {
      * On getting back reponse from Firebase, it delegates call back to the view model
      * via the closure function.
      **/
-    func loginUserWith(email: String, password: String, completionHandler: @escaping ( _: Bool, _: User? ) -> Void) {
+    func loginUserWith(email: String, password: String, completionHandler: @escaping (_: ApiResponse) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
+            
+            let apiResponse = ApiResponse()
             if error == nil && user != nil {
-                
-                let userName = Auth.auth().currentUser?.displayName ?? user?.user.displayName
-                self?.user = User(name: userName!.lowercased(), email: email)
-                
                 // Saving to local storage
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.isUserLoggedIn)
                 
-                // Adding user login session to the database
-                let loginDetails = [
-                    FirebaseDatabaseNodes.userName : userName!,
-                    FirebaseDatabaseNodes.lastLoginTime : ServerValue.timestamp()
-                    ] as [String:Any]
-                
-                self?.userDatabase?.child(FirebaseDatabaseNodes.userLogin).child(userName!.lowercased()).setValue(loginDetails)
-                
-                // Reponding back to the view model
-                completionHandler(true, self?.user)
+                // Loading user details from Firebase database
+                let userId = user?.user.uid
+                FirebaseDatabaseService.sharedInstance.getUser(byId: userId!) { user in
+                    self?.user = user
+                    apiResponse.result = user
+                    completionHandler(apiResponse)
+                }
             } else {
-                print("Error logging in user!")
-                
                 // Reponding back to the view model
-                completionHandler(false, self?.user)
+                apiResponse.error = error
+                completionHandler(apiResponse)
             }
         }
     }
@@ -82,13 +76,15 @@ class UserService: NSObject {
      * On getting back reponse from Firebase, it delegates call back to the view model
      * via the closure function.
      **/
-    func signupUserWith(name: String, email: String, password: String, completionHandler: @escaping (_:Bool) -> Void) {
+    func signupUserWith(name: String, email: String, password: String, completionHandler: @escaping (_:ApiResponse) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { user, error in
+            
+            let apiResponse = ApiResponse()
             if error == nil && user != nil {
                 print("User created!")
                 print("User details: \(String(describing: user))")
-                completionHandler(true)
                 
+                // Setting user name for the user account
                 let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                 changeRequest?.displayName = name
                 changeRequest?.commitChanges { error in
@@ -98,8 +94,19 @@ class UserService: NSObject {
                         print("Error updating user display name! \(String(describing: error?.localizedDescription))")
                     }
                 }
+                
+                // Adding user to the users database node
+                let newUser = User(name: name, email: email)
+                newUser.id = user?.user.uid
+                FirebaseDatabaseService.sharedInstance.addUserNode(user: newUser)
+                
+                // Showing registration success message
+                apiResponse.error = nil
+                completionHandler(apiResponse)
             } else {
-                completionHandler(false)
+                apiResponse.error = error
+                apiResponse.message = error?.localizedDescription
+                completionHandler(apiResponse)
             }
         }
     }
@@ -119,7 +126,7 @@ class UserService: NSObject {
                 
                 // Removing user login session from the database
                 if let user = self.user {
-                    let loggedInUser = self.userDatabase?.child(FirebaseDatabaseNodes.userLogin).child(user.name!)
+                    let loggedInUser = self.userDatabase?.child(FirebaseDatabaseNodes.users).child(user.name!)
                     loggedInUser?.removeValue()
                 }
                 completionHandler(true)

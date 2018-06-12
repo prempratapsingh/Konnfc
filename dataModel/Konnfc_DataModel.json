@@ -1,0 +1,34 @@
+{
+  "konnfc": {
+    "users": {
+    "12345678": {
+      "name": "Advay Pratap Sinhg",
+      "email": "advay@gmail.com",
+      "password": "123456"
+    }
+    },
+    "userProfiles": {
+      "12345678": {
+        "name": "Advay Pratap Sinhg",
+        "email": "advay@gmail.com",
+        "dob": "23/02/2013",
+        "gender": "male"
+      }
+    },
+    "posts": {
+      "12345678": {
+        "posts": {
+          "1": {
+            "text": "This is post 1"
+          },
+          "2": {
+            "text": "This is post 2"
+          },
+          "3": {
+            "text": "This is post 3"
+          }
+        }
+      }
+    }
+  }
+}

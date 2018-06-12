@@ -140,12 +140,12 @@ extension UserSignupVC: UserSignupViewModelViewDelegate {
     }
     
     // Called by the view model when user signup is failed. It shows the signup error message.
-    func didUserSignupFail() {
+    func didUserSignupFail(message: String) {
         SVProgressHUD.dismiss()
         
         let alert = UIAlertController(
             title: LocalizationKeys.USERSIGNUP_ALERT_TITLE.localized(),
-            message: LocalizationKeys.USERSIGNUP_SIGNUP_ERROR_MESSAGE.localized(),
+            message: message,
             preferredStyle: .alert
         )
         alert.addAction(UIAlertAction(title: LocalizationKeys.BUTTON_OK.localized(), style: .default) { action in

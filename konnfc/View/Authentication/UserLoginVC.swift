@@ -134,12 +134,12 @@ extension UserLoginVC: UserLoginViewModelViewDelegate {
     }
     
     // Called by the view model when user login is failed. It shows the login error message.
-    func didUserLoginFail() {
+    func didUserLoginFail(message: String) {
         SVProgressHUD.dismiss()
         
         let alert = UIAlertController(
             title: LocalizationKeys.USERLOGIN_ALERT_TITLE.localized(),
-            message: LocalizationKeys.USERLOGIN_LOGIN_ERROR_MESSAGE.localized(),
+            message: message,
             preferredStyle: .alert
         )
         alert.addAction(

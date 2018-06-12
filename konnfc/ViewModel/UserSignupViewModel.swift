@@ -44,11 +44,11 @@ class UserSignupViewModel: BaseViewModel {
      * for handling signup success/error.
      **/
     func signupUser() {
-        model?.signupUserWith(name: userName!, email: userEmail!, password: password!) { [weak self] didSignup in
-            if didSignup == true {
-                self?.view.didCompleteUserSignup()
+        model?.signupUserWith(name: userName!, email: userEmail!, password: password!) { [weak self] response in
+            if let error = response.error {
+                self?.view.didUserSignupFail(message: error.localizedDescription)
             } else {
-                self?.view.didUserSignupFail()
+                 self?.view.didCompleteUserSignup()
             }
         }
     }

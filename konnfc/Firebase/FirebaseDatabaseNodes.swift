@@ -15,7 +15,16 @@ import Foundation
 class FirebaseDatabaseNodes: NSObject {
     
     // Firebase Database node names
-    static let userLogin = "userLogin"
-    static let userName = "userName"
+    static let konnfc = "konnfc"
+    static let konnex = "konnex"
+    
+    static let users = "users"
+    static let data = "data"
+    static let userId = "userId"
+    static let userName = "name"
+    static let userEmail = "email"
     static let lastLoginTime = "lastLoginTime"
+    
+    static let posts = "posts"
+    static let text = "text"
 }
