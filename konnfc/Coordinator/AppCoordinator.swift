@@ -99,6 +99,6 @@ extension AppCoordinator: HomeViewCoordinatorDelegate {
     }
     
     func showAddNoteView() {
-        showAddNoteView()
+        showNoteView()
     }
 }
