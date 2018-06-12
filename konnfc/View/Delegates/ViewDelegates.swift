@@ -35,4 +35,5 @@ protocol UserSignupViewModelViewDelegate: class, ViewDelegate {
  **/
 protocol HomeViewModelViewDelegate: class, ViewDelegate {
     func didLoadUserNotes()
+    func didLoadUserDetails()
 }

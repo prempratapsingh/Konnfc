@@ -20,6 +20,12 @@ class UserModel: NSObject {
     //-------------------------------------------
     static var sharedInstance = UserModel()
     var user: User?
+    var isUserLoggedIn: Bool {
+        get {
+            let userLoggedIn = UserDefaults.standard.bool(forKey: UserDefaultKeys.isUserLoggedIn)
+            return userLoggedIn
+        }
+    }
     
     
     //-------------------------------------------
@@ -39,7 +45,21 @@ class UserModel: NSObject {
      **/
     func loginUserWith(email: String, password: String, completionHandler: @escaping (_:ApiResponse) -> Void) {
         UserService.sharedInstance.loginUserWith(email: email, password: password) { [weak self] response in
-            self?.user = response.result as? User
+            if response.result != nil {
+                self?.user = response.result as? User
+            }
+            completionHandler(response)
+        }
+    }
+    
+    /**
+     * Calls the user service to load user details with the given user id.
+     **/
+    func loadUserDetails(withId:String, completionHandler: @escaping (_:ApiResponse) -> Void) {
+        UserService.sharedInstance.loadUserDetails(withId: withId) { [weak self] response in
+            if response.result != nil {
+                self?.user = response.result as? User
+            }
             completionHandler(response)
         }
     }

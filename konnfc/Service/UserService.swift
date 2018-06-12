@@ -53,11 +53,13 @@ class UserService: NSObject {
             
             let apiResponse = ApiResponse()
             if error == nil && user != nil {
+                let userId = user?.user.uid
+                
                 // Saving to local storage
                 UserDefaults.standard.set(true, forKey: UserDefaultKeys.isUserLoggedIn)
+                UserDefaults.standard.set(userId, forKey: UserDefaultKeys.loogedInUserId)
                 
                 // Loading user details from Firebase database
-                let userId = user?.user.uid
                 FirebaseDatabaseService.sharedInstance.getUser(byId: userId!) { user in
                     self?.user = user
                     apiResponse.result = user
@@ -68,6 +70,18 @@ class UserService: NSObject {
                 apiResponse.error = error
                 completionHandler(apiResponse)
             }
+        }
+    }
+    
+    /**
+     * Calls the Firebase service to load user details with the given user id.
+     **/
+    func loadUserDetails(withId:String, completionHandler: @escaping (_:ApiResponse) -> Void) {
+        // Loading user details from Firebase database
+        FirebaseDatabaseService.sharedInstance.getUser(byId: withId) { user in
+            let apiResponse = ApiResponse()
+            apiResponse.result = user
+            completionHandler(apiResponse)
         }
     }
     
@@ -123,6 +137,7 @@ class UserService: NSObject {
                 
                 // Saving to local storage
                 UserDefaults.standard.set(false, forKey: UserDefaultKeys.isUserLoggedIn)
+                UserDefaults.standard.removeObject(forKey: UserDefaultKeys.loogedInUserId)
                 completionHandler(true)
             } catch {
                 completionHandler(false)

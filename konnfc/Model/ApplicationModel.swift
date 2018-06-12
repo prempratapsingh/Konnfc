@@ -20,12 +20,6 @@ class ApplicationModel: NSObject {
     
     
     //-------------------------------------------
-    //  PUBLIC PROPERTIES
-    //-------------------------------------------
-    var isUserSignedin = false
-    
-    
-    //-------------------------------------------
     //  CONSTRUCTOR
     //-------------------------------------------
     override private init() {

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import SVProgressHUD
 
 /**
  * View Controller for the home view
@@ -79,6 +80,10 @@ class HomeVC: BaseViewController {
         
         if let user = viewModel?.userModel?.user {
             self.userNameLabel.text = user.name
+        } else {
+            self.userNameLabel.text = ""
+            SVProgressHUD.show()
+            self.viewModel?.loadUserDetails()
         }
     }
     
@@ -90,5 +95,12 @@ class HomeVC: BaseViewController {
 extension HomeVC: HomeViewModelViewDelegate {
     func didLoadUserNotes() {
         // Reload notes table data with user notes
+    }
+    
+    func didLoadUserDetails() {
+        SVProgressHUD.dismiss()
+        if let user = viewModel?.userModel?.user {
+            self.userNameLabel.text = user.name
+        }
     }
 }

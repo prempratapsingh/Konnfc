@@ -17,6 +17,9 @@ class UserDefaultKeys: NSObject {
     // Key for reading/writing user login/logout state
     static let isUserLoggedIn = "com.xparrow.konnfc.isUserLoggedIn"
     
+    // Key for logged in user id
+    static let loogedInUserId = "com.xparrow.konnfc.loogedInUserId"
+    
     // key for reading/writing Firebase database configuration state
     static let isDatabaseConfigured = "com.xparrow.konnfc.isDatabaseConfigured"
 }

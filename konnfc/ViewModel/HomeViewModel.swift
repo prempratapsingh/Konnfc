@@ -48,6 +48,16 @@ class HomeViewModel: BaseViewModel {
     }
     
     /**
+     * Called by the view to load user profile details.
+     **/
+    func loadUserDetails() {
+        let loggedInUserId = UserDefaults.standard.string(forKey: UserDefaultKeys.loogedInUserId)
+        self.userModel?.loadUserDetails(withId: loggedInUserId!) { [weak self] response in
+            self?.view.didLoadUserDetails()
+        }
+    }
+    
+    /**
      * Called by the view to initiate the change to user profile view.
      **/
     func showUserProfile() {

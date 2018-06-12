@@ -24,7 +24,7 @@ class AppCoordinator: BaseCoordinator {
     //-------------------------------------------
     
     override func start() {
-        if ApplicationModel.sharedInstance.isUserSignedin {
+        if UserModel.sharedInstance.isUserLoggedIn {
             showHomeView()
         } else {
             showLoginView()
