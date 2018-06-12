@@ -18,15 +18,6 @@ protocol UserLoginCoordinatorDelegate: class {
 }
 
 /**
- * Coordinator delegate for user login view model.
- * It is used to delegate calls from view model to the view coordinator.
- **/
-protocol UserLoginViewModelCoordinatorDelegate: class, ViewDelegate {
-    func didCompleteUserLogin()
-    func showUserSignupView()
-}
-
-/**
  * Coordinator delegate for user signup view.
  * It is used to delegate calls from view coordinator to the app coordinator.
  **/
@@ -36,9 +27,38 @@ protocol UserSignupCoordinatorDelegate: class {
 }
 
 /**
+ * Coordinator delegate for home view.
+ * It is used to delegate calls from view coordinator to the app coordinator.
+ **/
+protocol HomeViewCoordinatorDelegate: class {
+    func showUserLoginView()
+    func showUserProfileView()
+    func showAddNoteView()
+}
+
+/**
+ * Coordinator delegate for user login view model.
+ * It is used to delegate calls from view model to the view coordinator.
+ **/
+protocol UserLoginViewModelCoordinatorDelegate: class, ViewDelegate {
+    func didCompleteUserLogin()
+    func showUserSignupView()
+}
+
+/**
  * Coordinator delegate for user signup view model.
  * It is used to delegate calls from view model to the view coordinator.
  **/
 protocol UserSignupViewModelCoordinatorDelegate: class, ViewDelegate {
     func showUserLoginView()
+}
+
+/**
+ * Coordinator delegate for home view model.
+ * It is used to delegate calls from view model to the view coordinator.
+ **/
+protocol HomeViewModelCoordinatorDelegate: class, ViewDelegate {
+    func showUserLoginView()
+    func showUserProfileView()
+    func showAddNoteView()
 }

@@ -63,6 +63,6 @@ class UserLoginViewModel: BaseViewModel {
      * Called by the view to initiate the change to home view.
      **/
     func showHomeView() {
-        
+        coordinator.didCompleteUserLogin()
     }
 }

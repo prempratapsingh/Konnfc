@@ -49,7 +49,17 @@ class AppCoordinator: BaseCoordinator {
     }
     
     private func showHomeView() {
-        
+        let homeViewCoordinator = HomeViewCoordinator(withWindow: super.window)
+        homeViewCoordinator.delegate = self
+        homeViewCoordinator.start()
+    }
+    
+    private func showProfileView() {
+        // Initiate ProfileViewCoordinator
+    }
+    
+    private func showNoteView() {
+        // Initiate AddNoteViewCoordinator
     }
 }
 
@@ -76,5 +86,19 @@ extension AppCoordinator: UserSignupCoordinatorDelegate {
     
     func showUserLoginView() {
         showLoginView()
+    }
+}
+
+/**
+ * Implmenting delegate methods for HomeViewCoordinatorDelegate
+ **/
+extension AppCoordinator: HomeViewCoordinatorDelegate {
+    
+    func showUserProfileView() {
+        showProfileView()
+    }
+    
+    func showAddNoteView() {
+        showAddNoteView()
     }
 }

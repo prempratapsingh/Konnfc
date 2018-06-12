@@ -15,6 +15,7 @@ class LocalizationKeys {
     
     // Buttons
     static let BUTTON_OK = "BUTTON_OK"
+    static let BUTTON_CANCEL = "BUTTON_CANCEL"
     static let BUTTON_BACK = "BUTTON_BACK"
     
     // UserLoginVC
@@ -33,6 +34,12 @@ class LocalizationKeys {
     static let USERSIGNUP_ALERT_TITLE = "USERSIGNUP_ALERT_TITLE"
     static let USERSIGNUP_SIGNUP_SUCCESS_MESSAGE = "USERSIGNUP_SIGNUP_SUCCESS_MESSAGE"
     static let USERSIGNUP_SIGNUP_ERROR_MESSAGE = "USERSIGNUP_SIGNUP_ERROR_MESSAGE"
+    
+    // HomeVC
+    static let HOME_VIEW_PROFILE = "HOME_VIEW_PROFILE"
+    static let HOME_POSTS = "HOME_POSTS"
+    static let HOME_LOGOUT_TITLE = "HOME_LOGOUT_TITLE"
+    static let HOME_LOGOUT_MESSAGE = "HOME_LOGOUT_MESSAGE"
     
     // UserProfileVC
     static let USERPROFILE_TITLE = "USERPROFILE_TITLE"

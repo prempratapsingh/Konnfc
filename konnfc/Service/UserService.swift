@@ -123,14 +123,7 @@ class UserService: NSObject {
                 
                 // Saving to local storage
                 UserDefaults.standard.set(false, forKey: UserDefaultKeys.isUserLoggedIn)
-                
-                // Removing user login session from the database
-                if let user = self.user {
-                    let loggedInUser = self.userDatabase?.child(FirebaseDatabaseNodes.users).child(user.name!)
-                    loggedInUser?.removeValue()
-                }
                 completionHandler(true)
-                
             } catch {
                 completionHandler(false)
             }

@@ -9,6 +9,7 @@
 // MARK: - Common
 // Buttons
 "BUTTON_OK" = "OK";
+"BUTTON_CANCEL" = "Cancel";
 "BUTTON_BACK" = "Back";
 
 // MARK: - UserLoginVC
@@ -27,6 +28,12 @@
 "USERSIGNUP_ALERT_TITLE" = "User Signup";
 "USERSIGNUP_SIGNUP_SUCCESS_MESSAGE" = "Your account is created. Please login with your email and password!";
 "USERSIGNUP_SIGNUP_ERROR_MESSAGE" = "Sorry, Your account coundn't be created. Please try again!";
+
+// MARK: - HomeVC
+"HOME_VIEW_PROFILE" = "View Profile";
+"HOME_POSTS" = "Posts";
+"HOME_LOGOUT_TITLE" = "Logout";
+"HOME_LOGOUT_MESSAGE" = "Are you sure to logout?";
 
 // MARK: - UserProfileVC
 "USERPROFILE_TITLE" = "USER PROFILE";

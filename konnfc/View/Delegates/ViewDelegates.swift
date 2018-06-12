@@ -28,3 +28,11 @@ protocol UserSignupViewModelViewDelegate: class, ViewDelegate {
     func didCompleteUserSignup()
     func didUserSignupFail(message: String)
 }
+
+/**
+ * Coordinator delegate for home view model.
+ * It is used to delegate calls from view model to the view coordinator.
+ **/
+protocol HomeViewModelViewDelegate: class, ViewDelegate {
+    func didLoadUserNotes()
+}
